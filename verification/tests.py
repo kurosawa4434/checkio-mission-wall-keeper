@@ -29,7 +29,7 @@ def wall_maker(n):
         tests.append([''.join(map(str, row)) for row in w])
     return tests
 
-random_walls = wall_maker(3)
+random_walls = wall_maker(5)
 
 TESTS = {
     "Basics": [
@@ -78,6 +78,14 @@ TESTS = {
         {
             "input": random_walls[2],
             "answer": random_walls[2],
+        },
+        {
+            "input": random_walls[3],
+            "answer": random_walls[3],
+        },
+        {
+            "input": random_walls[4],
+            "answer": random_walls[4],
         },
     ],
 }
