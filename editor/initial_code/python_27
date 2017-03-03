@@ -1,0 +1,29 @@
+def wall_keeper(wall):
+    return []
+
+if __name__ == '__main__':
+    #These "asserts" using only for self-checking and not necessary for auto-testing
+    from itertools import chain
+
+    def checker(solution, wall):
+        answer = solution(wall)
+        w = [list(map(int, r)) for r in wall]
+        for a in answer:
+            r, c = (a-1) // len(w), (a-1) % len(w[0])
+            w[r][c] = 1 - w[r][c]
+            if r+1 < len(w):
+                w[r+1][c] = 1 - w[r+1][c]
+            if r-1 > -1:
+                w[r-1][c] = 1 - w[r-1][c]
+            if c+1 < len(w[0]):
+                w[r][c+1] = 1 - w[r][c+1]
+            if c-1 > -1:
+                w[r][c-1] = 1 - w[r][c-1]
+        return sum(chain(*w)) == 0
+
+    assert checker(wall_keeper, [
+        '00001',
+        '01000',
+        '00110',
+        '00100',
+        '00000']), 'wall_1'

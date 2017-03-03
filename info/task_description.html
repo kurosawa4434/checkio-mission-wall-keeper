@@ -1,0 +1,61 @@
+<p>
+This is puzzle-solver mission ( like a 
+<a href="https://py.checkio.org/mission/sudokusolver/">Sudoku Solver</a>, 
+<a href="https://py.checkio.org/mission/crossword-solver/">Crossword Solver
+</a>, 
+<a href="https://py.checkio.org/mission/8-puzzle/">8 Puzzle</a>, 
+<a href="https://py.checkio.org/mission/bulls-and-cows/">Bulls and Cows</a>, 
+<a href="https://py.checkio.org/mission/minesweeper/">Minesweeper</a>
+ )
+<p>
+<p>
+This time, You should implement solver of <a href="https://en.wikipedia.org/wiki/Lights_Out_(game)"> Lights Out</a>.
+</p>
+<p>rule of the puzzle
+<ul>
+    <li>You give a 5x5 panels.( 1 : Lighting up, 0 : Lights off )</li>
+    <li>if you click a panel, The state of the panel and adjacent panels is reversed.</li>
+    <li>The goal is all panels Lights off.</li>
+</ul>
+
+
+<p>
+    <strong>Input: </strong> 5x5 panels as a list of strings. 
+</p>
+
+<p>
+    <strong>Output: </strong> Click on panels as a list of Integers. 
+</p>
+
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+<pre class="brush: python">{% if interpreter.slug == "js-node" %}
+wallKeeper(['00001',
+            '01000',
+            '00110',
+            '00100',
+            '00000']) == [2, 6, 7, 8, 10, 12, 15, 18, 24, 25]
+{% else %}
+wall_keeper(['00001',
+             '01000',
+             '00110',
+             '00100',
+             '00000']) == [2, 6, 7, 8, 10, 12, 15, 18, 24, 25]
+{% endif %}</pre>
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    Get puzzle automatic answer.
+</p>
+
+<p>
+    <strong>Precondition:</strong><br>
+    len(wall) = 5<br>
+    all(len(row) == 5 and len(row) == len(wall[0]) for row in wall)<br>
+    The answer may be one of various answers
+</p>

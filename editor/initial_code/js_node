@@ -1,0 +1,49 @@
+"use strict";
+
+function wallKeeper(wall){
+    return [];
+}
+
+var assert = require('assert');
+
+if (!global.is_checking) {
+    function checker(solution, wall) {
+        var answer = solution(wall)
+        var w = [];
+        for (var i=0; i < wall.length; i += 1) {
+            var row = [];
+            for (var j=0; j < wall[0].length; j += 1) {
+                row.push(wall[i][j]*1);
+            }
+            w.push(row);
+        }
+
+        answer.forEach(a=>{
+            var r = Math.floor((a-1) / w.length);
+            var c = (a-1) % w[0].length;
+
+            w[r][c] = 1 - w[r][c];
+
+            if (r+1 < w.length)
+                w[r+1][c] = 1 - w[r+1][c];
+            if (r-1 > -1)
+                w[r-1][c] = 1 - w[r-1][c];
+            if (c+1 < w[0].length)
+                w[r][c+1] = 1 - w[r][c+1];
+            if (c-1 > -1)
+                w[r][c-1] = 1 - w[r][c-1];
+
+        var total = 0;
+        for (var k=0; k < w.length; k += 1)
+            total += Math.sum.apply(null, w[k]);
+
+        return (total === 0);
+
+    assert.equal(checker(wallKeeper, [
+        '00001',
+        '01000',
+        '00110',
+        '00100',
+        '00000']), True, 'basic')
+    console.log("Coding complete? Click 'Check' to review your tests and earn cool rewards!");
+}
