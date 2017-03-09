@@ -50,17 +50,6 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
             }
 
             // click start
-            if (! Array.isArray(user_answer)) { 
-                return;
-                for (var i=0; i < user_answer.length; i += 1) {
-                    var ua = user_answer[i];
-                    if (ua < 1 || ua > 25) {
-                        return;
-                    }
-                }
-            }
-
-
             var phase = 0;
             const delay = 400
             user_answer.forEach(a=>{
