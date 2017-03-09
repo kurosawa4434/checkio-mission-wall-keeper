@@ -35,6 +35,13 @@ from itertools import chain
 
 
 def check_result(wall, user_result):
+    if not isinstance(user_result, list):
+        return False, user_result, 'Result is not list'
+    for r in user_result:
+        if not isinstance(r, int) or r < 1 or r > 25:
+            return False, r, str(r)+' is not an integer from 1 to 25' 
+            # return False, r, ' is not an integer from 1 to 25' 
+        
     w = [list(map(int, r)) for r in wall]
     for a in user_result:
         r, c = (a-1) // len(w), (a-1) % len(w[0])
@@ -47,7 +54,7 @@ def check_result(wall, user_result):
             w[r][c+1] = 1 - w[r][c+1]
         if c-1 > -1:
             w[r][c-1] = 1 - w[r][c-1]
-    return sum(chain(*w)) == 0, 'success'
+    return sum(chain(*w)) == 0, user_result, 'Success'
 
 api.add_listener(
     ON_CONNECT,

@@ -7,8 +7,9 @@ function wallKeeper(wall){
 var assert = require('assert');
 
 if (!global.is_checking) {
+
     function checker(solution, wall) {
-        var answer = solution(wall)
+        var answer = solution(wall);
         var w = [];
         for (var i=0; i < wall.length; i += 1) {
             var row = [];
@@ -32,18 +33,28 @@ if (!global.is_checking) {
                 w[r][c+1] = 1 - w[r][c+1];
             if (c-1 > -1)
                 w[r][c-1] = 1 - w[r][c-1];
-
+        });
         var total = 0;
-        for (var k=0; k < w.length; k += 1)
-            total += Math.sum.apply(null, w[k]);
-
-        return (total === 0);
-
+        for (var k=0; k < w.length; k += 1) {
+            w[k].forEach(function(v){
+                total += v
+            });
+        }
+        return total === 0;
+    }
     assert.equal(checker(wallKeeper, [
         '00001',
         '01000',
         '00110',
         '00100',
-        '00000']), True, 'basic')
+        '00000']), true, 'basic');
+
+    assert.equal(checker(wallKeeper, [
+        '11111',
+        '11111',
+        '11111',
+        '11111',
+        '11111']), true, 'all_lights');
+
     console.log("Coding complete? Click 'Check' to review your tests and earn cool rewards!");
 }
