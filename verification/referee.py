@@ -54,7 +54,8 @@ def check_result(wall, user_result):
             w[r][c+1] = 1 - w[r][c+1]
         if c-1 > -1:
             w[r][c-1] = 1 - w[r][c-1]
-    return sum(chain(*w)) == 0, user_result, 'Success'
+    # return sum(chain(*w)) == 0, user_result, 'Success'
+    return sum(chain(*w)) == 0, user_result
 
 api.add_listener(
     ON_CONNECT,
