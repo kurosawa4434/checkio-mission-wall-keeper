@@ -31,7 +31,7 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
             var cell_set = paper.set();
             for (var i=0; i < 5; i += 1) {
                 for (var j=0; j < 5; j += 1) {
-                    var light = dataInp[i].slice(j, j+1)*1;
+                    var light = dataInp.indexOf(i*5+j+1) > -1 ? 1: 0;
                     cell_set.push(
                         paper.rect(zx + j * cell_size,
                             zy + i * cell_size,

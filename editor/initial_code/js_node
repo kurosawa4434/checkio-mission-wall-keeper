@@ -8,53 +8,45 @@ var assert = require('assert');
 
 if (!global.is_checking) {
 
-    function checker(solution, wall) {
-        var answer = solution(wall);
-        var w = [];
-        for (var i=0; i < wall.length; i += 1) {
+    function checker(solution, on_panels) {
+        var answer = solution(on_panels);
+        var p = [];
+        for (var i=0; i < 5; i += 1) {
             var row = [];
-            for (var j=0; j < wall[0].length; j += 1) {
-                row.push(wall[i][j]*1);
+            for (var j=0; j < 5; j += 1) {
+                row.push(on_panels.indexOf(i*5+j+1) > -1 ? 1: 0);
             }
-            w.push(row);
+            p.push(row);
         }
 
         answer.forEach(a=>{
-            var r = Math.floor((a-1) / w.length);
-            var c = (a-1) % w[0].length;
+            var r = Math.floor((a-1) / p.length);
+            var c = (a-1) % p[0].length;
 
-            w[r][c] = 1 - w[r][c];
+            p[r][c] = 1 - p[r][c];
 
-            if (r+1 < w.length)
-                w[r+1][c] = 1 - w[r+1][c];
+            if (r+1 < 5)
+                p[r+1][c] = 1 - p[r+1][c];
             if (r-1 > -1)
-                w[r-1][c] = 1 - w[r-1][c];
-            if (c+1 < w[0].length)
-                w[r][c+1] = 1 - w[r][c+1];
+                p[r-1][c] = 1 - p[r-1][c];
+            if (c+1 < 5)
+                p[r][c+1] = 1 - p[r][c+1];
             if (c-1 > -1)
-                w[r][c-1] = 1 - w[r][c-1];
+                p[r][c-1] = 1 - p[r][c-1];
         });
         var total = 0;
-        for (var k=0; k < w.length; k += 1) {
-            w[k].forEach(function(v){
+        for (var k=0; k < 5; k += 1) {
+            p[k].forEach(function(v){
                 total += v
             });
         }
         return total === 0;
     }
-    assert.equal(checker(wallKeeper, [
-        '00001',
-        '01000',
-        '00110',
-        '00100',
-        '00000']), true, 'basic');
+    assert.equal(checker(wallKeeper, [5, 7, 13, 14, 18]),
+        true, 'basic');
 
-    assert.equal(checker(wallKeeper, [
-        '11111',
-        '11111',
-        '11111',
-        '11111',
-        '11111']), true, 'all_lights');
+    assert.equal(checker(wallKeeper, [8, 12, 13, 14, 18]),
+        true, 'all_lights');
 
     console.log("Coding complete? Click 'Check' to review your tests and earn cool rewards!");
 }

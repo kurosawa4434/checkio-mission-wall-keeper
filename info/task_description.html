@@ -1,25 +1,12 @@
-<!--
-<p>
-This is a puzzle-solver mission. ( like a 
-<a href="https://py.checkio.org/mission/sudokusolver/">Sudoku Solver</a>, 
-<a href="https://py.checkio.org/mission/crossword-solver/">Crossword Solver
-</a>, 
-<a href="https://py.checkio.org/mission/8-puzzle/">8 Puzzle</a>, 
-<a href="https://py.checkio.org/mission/bulls-and-cows/">Bulls and Cows</a>, 
-<a href="https://py.checkio.org/mission/minesweeper/">Minesweeper</a>
- )
-<p>
--->
 <p>
 In this time, you need to implement the solver of <a href="https://en.wikipedia.org/wiki/Lights_Out_(game)"> Lights Out</a> the puzzle.
 </p>
 <p>rule of the puzzle :
 <ul>
-    <li>You are given 5x5 panels.(list of Strings. 1 : Lighting up, 0 : Lights off )
-    </li>
+    <li>This puzzle uses 5x5 grid. Each panel has two state ( lights on or off ).</li>
 
-    <li>if you click a panel, the panel and adjacent (4 directions) panels will flip. ( 1 <=> 0 )</li>
-    <li>The goal is all panels Lights off.</li>
+    <li>if you click a panel, the panel and adjacent (4 directions) panels will flip. ( on <=> off )</li>
+    <li>The goal is all panels lights off.</li>
 </ul>
 
 <pre>
@@ -38,11 +25,11 @@ number of each panel
 </pre>
 
 <p>
-    <strong>Input: </strong> 5x5 panels as a list of strings. 
+    <strong>Input: </strong>ON-state panels as list of Integers. 
 </p>
 
 <p>
-    <strong>Output: </strong> Click on panels as a list of Integers. 
+    <strong>Output: </strong> Clicked panels as a list of Integers. 
 </p>
 
 
@@ -52,17 +39,11 @@ number of each panel
         <strong>Example:</strong>
     </p>
 <pre class="brush: python">{% if interpreter.slug == "js-node" %}
-wallKeeper(['00001',
-            '01000',
-            '00110',
-            '00100',
-            '00000']) == [2, 6, 7, 8, 10, 12, 15, 18, 24, 25]
+wallKeeper([8, 12, 13, 14, 18]) == [13]
+wallKeeper([5, 7, 13, 14, 18]) == [2, 6, 7, 8, 10, 12, 15, 18, 24, 25]
 {% else %}
-wall_keeper(['00001',
-             '01000',
-             '00110',
-             '00100',
-             '00000']) == [2, 6, 7, 8, 10, 12, 15, 18, 24, 25]
+wallKeeper([8, 12, 13, 14, 18]) == [13]
+wallKeeper([5, 7, 13, 14, 18]) == [2, 6, 7, 8, 10, 12, 15, 18, 24, 25]
 {% endif %}</pre>
 </div>
 
@@ -73,7 +54,6 @@ wall_keeper(['00001',
 
 <p>
     <strong>Precondition:</strong><br>
-    len(wall) = 5<br>
-    all(len(row) == 5 and len(row) == len(wall[0]) for row in wall)<br>
+    all([1 <= p <= 25 for p in on_panels])<br>
     The answer may be one of various answers
 </p>
