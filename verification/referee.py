@@ -34,26 +34,31 @@ from tests import TESTS
 from itertools import chain
 
 
-def check_result(wall, user_result):
+def check_result(on_panels, user_result):
+
     if not isinstance(user_result, list):
         return False, (user_result, 'Result is not list')
+
     for r in user_result:
         if not isinstance(r, int) or r < 1 or r > 25:
             return False, (r, str(r)+' is not an integer from 1 to 25') 
-        
-    w = [list(map(int, r)) for r in wall]
+
+    wk_p = list((0, 1)[n in on_panels] for n in range(1, 26))
+    p = list(wk_p[n: n+5] for n in range(0, 25, 5))        
+
     for a in user_result:
-        r, c = (a-1) // len(w), (a-1) % len(w[0])
-        w[r][c] = 1 - w[r][c]
-        if r+1 < len(w):
-            w[r+1][c] = 1 - w[r+1][c]
+        r, c = (a-1) // 5, (a-1) % 5
+        p[r][c] = 1 - p[r][c]
+        if r+1 < 5:
+            p[r+1][c] = 1 - p[r+1][c]
         if r-1 > -1:
-            w[r-1][c] = 1 - w[r-1][c]
-        if c+1 < len(w[0]):
-            w[r][c+1] = 1 - w[r][c+1]
+            p[r-1][c] = 1 - p[r-1][c]
+        if c+1 < 5:
+            p[r][c+1] = 1 - p[r][c+1]
         if c-1 > -1:
-            w[r][c-1] = 1 - w[r][c-1]
-    return sum(chain(*w)) == 0, (user_result, 'Success')
+            p[r][c-1] = 1 - p[r][c-1]
+
+    return sum(chain(*p)) == 0, (user_result, 'Success')
 
 api.add_listener(
     ON_CONNECT,
