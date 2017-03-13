@@ -1,4 +1,4 @@
-def wall_keeper(wall):
+def wall_keeper(on_panels):
     return []
 
 if __name__ == '__main__':
