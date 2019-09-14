@@ -89,7 +89,7 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
         }
         var $tryit;
         var io = new extIO({
-            multipleArguments: true,
+            multipleArguments: false,
             functions: {
                 js: 'wallKeeper',
                 python: 'wall_keeper'
